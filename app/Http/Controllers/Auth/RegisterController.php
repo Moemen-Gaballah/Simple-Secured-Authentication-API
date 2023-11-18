@@ -23,6 +23,6 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return $this->sendResponse(UserResource::class, __('general.register successfully'));
+        return $this->sendResponse(new UserResource($user), __('general.register successfully'));
     }
 }

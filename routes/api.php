@@ -25,7 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () {
     Route::post('/login', [LoginController::class, 'login']);
     Route::post('/register', [RegisterController::class, 'register']);
-    Route::get('/logout', [LogoutController::class, 'logout']);
+    Route::get('/logout', [LogoutController::class, 'logout'])->middleware('auth:sanctum');
+
     Route::get('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
     Route::get('/password/reset/{token}', [ResetPasswordController::class, 'reset']);
 });
