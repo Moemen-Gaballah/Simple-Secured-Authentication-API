@@ -24,11 +24,11 @@ class ResetPasswordController extends Controller
             'token' => $token,
         ])->first();
 
-        if(!$passwordReset){
+        if (!$passwordReset) {
             return $this->sendResponse('', __('general.Unable to reset password'), 500);
         }
 
-        User::where('email',$request->email)->update([
+        User::where('email', $request->email)->update([
             'password' => bcrypt($request->password)
         ]);
 

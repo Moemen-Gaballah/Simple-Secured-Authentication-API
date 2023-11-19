@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "5b95e53c-a69e-4bdf-9733-f214dcb3231b",
+		"name": "Auth-secure",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21054070",
+		"_collection_link": "https://orange-moon-81336.postman.co/workspace/auction~a686fc4d-99d4-494e-ac5d-0ee1df26ea6e/collection/21054070-5b95e53c-a69e-4bdf-9733-f214dcb3231b?action=share&source=collection_link&creator=21054070"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"moemen@gmail.com\",\r\n    \"password\": 123456789\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/en/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"en",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ForgotPassword",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"moemen@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/en/password/email",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"en",
+						"password",
+						"email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"moemen\",\r\n    \"email\": \"moemen@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"password_confirmation\": \"12345678\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/en/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"en",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/en/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"en",
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Logout",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/en/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"en",
+								"logout"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Nov 2023 12:00:39 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 18 Nov 2023 12:00:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.30"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "ResetPassword",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"moemen@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"password_confirmation\": \"123456789\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/en/password/reset/VBEoeH5E5dqKb3bFznAqiEoYjsmpLEvKi1QppyZigc4s1VvyqykErPyxoKBv63bA?email=moemen@gmail.com",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"en",
+						"password",
+						"reset",
+						"VBEoeH5E5dqKb3bFznAqiEoYjsmpLEvKi1QppyZigc4s1VvyqykErPyxoKBv63bA"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "moemen@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
