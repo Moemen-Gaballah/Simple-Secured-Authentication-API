@@ -36,6 +36,7 @@ Postman Collection in root project  : `Auth-secure.postman_collection.json`
 - [] Need the Forgot Password Notification be Queued and that through using auth queue not default
   one.
 - [] Need the Queueing be on Redis.
+- [] All config depend on Config not env direct.
 - [] Add Repository Pattern
 - [] Middleware to redirect if url doesn't have local(ar-en).
 - [] Use Eloquent ORM in all project.
