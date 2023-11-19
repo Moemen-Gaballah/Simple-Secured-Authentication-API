@@ -12,7 +12,7 @@ trait ApiResponse
             'message' => $message,
         ];
 
-        return response()->json($response);
+        return response()->json($response, $status_code);
     }
 
 
@@ -29,6 +29,6 @@ trait ApiResponse
             'data' => $data
         ];
 
-        return response()->json($response);
+        return response()->json($response, $status_code);
     }
 }

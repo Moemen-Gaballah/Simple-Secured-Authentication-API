@@ -22,11 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () {
+Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () { // TODO middleware to redirect default lang
     Route::post('/login', [LoginController::class, 'login']);
     Route::post('/register', [RegisterController::class, 'register']);
     Route::get('/logout', [LogoutController::class, 'logout'])->middleware('auth:sanctum');
 
-    Route::get('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
-    Route::get('/password/reset/{token}', [ResetPasswordController::class, 'reset']);
+    Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+    Route::post('/password/reset/{token}', [ResetPasswordController::class, 'reset'])->name('password.reset');
 });
+
+

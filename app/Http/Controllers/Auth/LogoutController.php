@@ -13,7 +13,6 @@ class LogoutController extends Controller
 
     public function logout(Request $request)
     {
-        dd(auth('sanctum')->check());
         $request->user()->currentAccessToken()->delete();
 
         // Remove the auth_token cookie
