@@ -16,8 +16,7 @@ class LocaleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $locale = $request->segment(1); // Get the locale from the URL
-
+        $locale = $request->segment(2); // Get the locale from the URL API
         if (in_array($locale, ['en', 'ar'])) {
             app()->setLocale($locale);
         }

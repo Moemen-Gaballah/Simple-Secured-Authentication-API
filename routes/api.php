@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () { // TODO middleware to redirect default lang
+Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () { // TODO middleware to redirect default lang and set in kernal global
     Route::post('/login', [LoginController::class, 'login']);
     Route::post('/register', [RegisterController::class, 'register']);
     Route::get('/logout', [LogoutController::class, 'logout'])->middleware('auth:sanctum');

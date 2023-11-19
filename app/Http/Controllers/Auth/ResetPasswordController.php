@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResetPasswordRequest;
+use App\Models\User;
 use App\Traits\ApiResponse;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use function Symfony\Component\Translation\t;
 
 class ResetPasswordController extends Controller
 {
@@ -16,22 +19,26 @@ class ResetPasswordController extends Controller
     // TODO Set Local To Header it is better OR use Package localization or ...
     public function reset(ResetPasswordRequest $request, $local, $token)
     {
-        $credentials = $request->only('email', 'password', 'password_confirmation');
-        $credentials['token'] = $token;
-        $status = Password::reset(
-            $credentials,
-            function ($user, $password) {
-                $user->forceFill([
-                    'password' => bcrypt($password)
-                ])->setRememberToken(Str::random(60));
+        $passwordReset = \DB::table('password_resets')->where([
+            'email' => $request->email,
+            'token' => $token,
+        ])->first();
 
-                $user->save();
-            }
-        );
+        if(!$passwordReset){
+            return $this->sendResponse('', __('general.Unable to reset password'), 500);
+        }
 
-        return $status === Password::PASSWORD_RESET
-            ? $this->sendResponse('', __('general.Password reset successfully'))
-            : $this->sendResponse('', __('general.Unable to reset password'), 500);
+        User::where('email',$request->email)->update([
+            'password' => bcrypt($request->password)
+        ]);
+
+        \DB::table('password_resets')->where([
+            'email' => $request->email,
+            'token' => $token,
+        ])->delete();
+
+        return $this->sendResponse('', __('general.Password reset successfully'));
     }
+
 
 }
